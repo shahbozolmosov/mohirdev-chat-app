@@ -18,6 +18,8 @@ socket.on("message", (message) => {
   console.log(message);
 
   renderMessage(message);
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 chatForm.addEventListener("submit", (event) => {
@@ -27,6 +29,10 @@ chatForm.addEventListener("submit", (event) => {
 
   // Emit message to the server
   socket.emit("chatMessage", message);
+
+  // Clear
+  event.target.elements.msg.value = "";
+  event.target.elements.msg.focus();
 });
 
 // Output message to view
@@ -40,5 +46,5 @@ function renderMessage(msg) {
       </p>
   `;
 
-  document.querySelector(".chat-messages").appendChild(div);
+  chatMessages.appendChild(div);
 }
