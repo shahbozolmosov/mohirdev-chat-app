@@ -40,9 +40,9 @@ function renderMessage(msg) {
   const div = document.createElement("div");
   div.classList.add("message");
   div.innerHTML = `
-    <p class="meta">Bexruz <span>9:12pm</span></p>
+    <p class="meta">${msg.username} <span>${msg.time}</span></p>
       <p class="text">
-        ${msg}
+        ${msg.text}
       </p>
   `;
 
