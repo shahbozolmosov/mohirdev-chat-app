@@ -22,6 +22,10 @@ io.on("connection", (socket) => {
     io.emit('message', 'A user left the chat')
   })
   
+  // Listen to chatMessage event
+  socket.on('chatMessage', (message) => {
+    io.emit('message', message);
+  })
 });
 
 const PORT = process.env.PORT || 3000;
