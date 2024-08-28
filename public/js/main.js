@@ -4,15 +4,18 @@ const roomName = document.querySelector("#room-name");
 const usersList = document.querySelector("#users");
 
 // Get username and room name
-// const {username, room} = Qs.parse(location.search, {
-//   ignoreQueryPrefix: true,
-// });
+const { username, room } = Qs.parse(location.search, {
+  ignoreQueryPrefix: true,
+});
+
+console.log(username);
+console.log(room);
 
 // SOCKET IO
 const socket = io();
 
 // Joining chat room
-// socket.emit('joinRoom', 'Shaboz')
+socket.emit("joinRoom", { username, room });
 
 socket.on("message", (message) => {
   console.log(message);
