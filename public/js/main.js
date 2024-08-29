@@ -17,6 +17,12 @@ const socket = io();
 // Joining chat room
 socket.emit("joinRoom", { username, room });
 
+// Get users and room name
+socket.on("roomUsers", ({ room, users }) => {
+  displayRoomName(room);
+  displayOnlineUsers(users);
+});
+
 socket.on("message", (message) => {
   console.log(message);
 
@@ -50,4 +56,14 @@ function renderMessage(msg) {
   `;
 
   chatMessages.appendChild(div);
+}
+
+function displayRoomName(room) {
+  roomName.innerText = room;
+}
+
+function displayOnlineUsers(users) {
+  usersList.innerHTML = `
+    ${users.map((user) => `<li>${user.username}</li>`).join('')}
+  `;
 }

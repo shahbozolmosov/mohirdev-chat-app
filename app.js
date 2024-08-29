@@ -35,6 +35,12 @@ io.on("connection", (socket) => {
         "message",
         formatMessage(botName, `${user.username} joined to the chat`)
       );
+
+    // send user online info
+    io.to(user.room).emit("roomUsers", {
+      room: user.room,
+      users: getRoomUsers(user.room),
+    });
   });
 
   // Listen to chatMessage event
@@ -53,6 +59,12 @@ io.on("connection", (socket) => {
         formatMessage(botName, `${user.username} left the chat`)
       );
     }
+
+    // send user online info
+    io.to(user.room).emit("roomUsers", {
+      room: user.room,
+      users: getRoomUsers(user.room),
+    });
   });
 });
 
